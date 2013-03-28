@@ -1,0 +1,103 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<title>Get key code</title>
+	<style type="text/css">
+		body{
+			padding: 0;
+			margin: 0;
+			background-color: whitesmoke;
+		}
+		#center{
+			margin: 200px;
+			font-size: 30px;
+			font-family: '微软雅黑';
+			text-align: center;
+		}
+		#center>input{
+			font-size: 30px;
+			color: #333;
+		}
+		#center>input:focus{
+			outline: none;
+		}
+		#center span{
+			font-size: 40px;
+			text-shadow: 0 2px 4px #777;
+		}
+		#center .tip{
+			font-size: 20px;
+			color: #555;
+			text-shadow: 0 2px 4px #777;
+		}
+		.radio{
+			font-size: 14px;
+		}
+		a:link,a:visited{
+			color: #08c;
+		}
+		a:hover,a:active{
+			color: #086;
+		}
+	</style>
+</head>
+<body>
+	<div style="position: absolute;font-size: 18px; top: 20px; right: 20px; z-index: 2000;"><a href="../index.html">←Back To Saiya's Toolkit</a></div>
+	<div id="center">
+		<h2>Key code & char code Getter</h2>
+		<span class="tip">Press any key to get it's  code!</span><br>
+		<input type="text" name="key" id="key">
+		<div class="radio">
+			<input type="radio" name="type" id="keyb" checked value="1"><label for="keyb">Key Code</label>
+			<input type="radio" name="type" id="char" value="2"><label for="char">Char Code</label>
+		</div>
+		<br>
+		<span id="ans"></span>
+	</div>
+	<script type="text/javascript" src="../bookmark/jquery.min.js"></script>
+	<script type="text/javascript">
+		$(function  ($) {
+			var key = $('input[name=type]:checked').val();
+			$('#key').focus();
+			$('#key').on('keydown mousedown',function  (e) {
+				if(key != '1') return;
+				$(this).val('');
+				e = e || event;
+				$('#ans').html(getKeyCode(e));
+				e.returnValue = false;
+			});
+			$('#key').on('keyup',function  () {
+				if (key != '2') return;
+				var str = $(this).val();
+				$('#ans').html(getCharCode(str));
+			});
+			$('input[name=type]').on('click',function  () {
+				var val = $(this).val();
+				if (key == val) return;
+				key = val;
+				switch(key) {
+					case '1':
+						$('#ans').html('');
+						break;
+					case '2':
+						val = $('#key').val();
+						$('#ans').html(getCharCode(val));
+				        break;
+					default:
+						break;
+				}
+				$('#key').focus();
+			});
+			function getKeyCode (e) {
+				return ('Key Code:' + e.keyCode + '|' + 'Key Which:' + e.which);
+			}
+			function getCharCode (str) {
+				if(str === '') return false;
+				str = str.toString()[0];
+				return ('Char Code of "' + str + '":' + str.charCodeAt(0) + '(0x' + str.charCodeAt(0).toString(16)　+　')');
+			}
+		});
+	</script>
+</body>
+</html>
