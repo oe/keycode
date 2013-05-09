@@ -50,56 +50,63 @@
 		<h2>Key code & char code Getter</h2>
 		<span class="tip">Press any key to get it's  code!</span><br>
 		<input type="text" name="key" id="key">
-		<div class="radio">
-			<input type="radio" name="type" id="keyb" checked value="1"><label for="keyb">Key Code</label>
-			<input type="radio" name="type" id="char" value="2"><label for="char">Char Code(Unicode)</label>
+		<div class="radio" id="key-type">
+			<input type="radio" name="type" id="keycode" checked value="1"><label for="keycode">Key Code</label>
+			<input type="radio" name="type" id="charcode" value="2"><label for="charcode">Char Code(Unicode)</label>
 		</div>
 		<br>
 		<span id="ans"></span>
 	</div>
-	<script type="text/javascript" src="../search/jquery.min.js"></script>
 	<script type="text/javascript">
-		$(function  ($) {
-			var key = $('input[name=type]:checked').val();
-			$('#key').focus();
-			$('#key').on('keydown mousedown',function  (e) {
-				if(key != '1') return;
-				$(this).val('');
-				e = e || event;
-				$('#ans').html(getKeyCode(e));
-				e.returnValue = false;
-			});
-			$('#key').on('keyup',function  () {
-				if (key != '2') return;
-				var str = $(this).val();
-				$('#ans').html(getCharCode(str));
-			});
-			$('input[name=type]').on('click',function  () {
-				var val = $(this).val();
-				if (key == val) return;
-				key = val;
-				switch(key) {
-					case '1':
-						$('#ans').html('');
-						break;
-					case '2':
-						val = $('#key').val();
-						$('#ans').html(getCharCode(val));
-				        break;
-					default:
-						break;
-				}
-				$('#key').focus();
-			});
+		document.onreadystatechange = function  (event) {
+			if (document.readyState !== "complete") return;
+			var type = 1,
+				inputBox = document.getElementById('key'),
+				ans = document.getElementById('ans'),
+				typeRadio = document.getElementById('key-type');
 			function getKeyCode (e) {
 				return ('Key Code:' + e.keyCode + '|' + 'Key Which:' + e.which);
 			}
 			function getCharCode (str) {
-				if(str === '') return false;
+				if(str === '') return '';
 				str = str.toString()[0];
 				return ('Char Code of "' + str + '":' + str.charCodeAt(0) + '(0x' + str.charCodeAt(0).toString(16)　+　')');
 			}
-		});
+			inputBox.focus();
+			inputBox.onkeydown = inputBox.onmousedown = function  (event) {
+				if (type !== 1) return;
+				inputBox.value = '';
+				event = event || window.event;
+				ans.innerHTML = getKeyCode(event);
+			};
+			inputBox.onkeyup = function  (event) {
+				if (type !== 2) return;
+				ans.innerHTML = getCharCode(inputBox.value);
+			};
+			typeRadio.onmouseup = function  (event) {
+				var target;
+				event = event || window.event;
+				target = event.target || event.srcElement;
+				if (undefined === target.value) {
+				    if (undefined !== target.getAttribute('for')) {
+				        target = document.getElementById(target.getAttribute('for'));
+				    } else {
+				        return;
+				    }
+				}
+				if(type == target.value) return;
+				type = target.value | 0;
+				switch(type) {
+					case 1:
+						ans.innerHTML = '';
+				        break;
+					case 2:
+				        ans.innerHTML = getCharCode(inputBox.value);
+				        break;
+				}
+				inputBox.focus();
+			};
+		};
 	</script>
 </body>
 </html>
