@@ -1,0 +1,26 @@
+{
+  "$schema": "https://biomejs.dev/schemas/1.4.0/schema.json",
+  "organizeImports": {
+    "enabled": false
+  },
+  "files": {
+    "include": [
+      "src/**/*.ts"
+    ],
+    "ignore": [
+      "src/**/*.spec.ts"
+    ]
+  },
+  "linter": {
+    "enabled": true,
+    "rules": {
+      "recommended": true,
+      "complexity": {
+        "noForEach": "off"
+      },
+      "a11y": {
+        "useKeyWithClickEvents": "off"
+      }
+    }
+  }
+}
