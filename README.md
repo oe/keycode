@@ -1,4 +1,3 @@
-keycode
-=======
+# keycode
 
-get keyboard's key code &amp; character's unicode
+Get keyboard event details
