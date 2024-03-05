@@ -1,0 +1,29 @@
+---
+interface Props {
+	title: string;
+}
+
+import Header from './Header.astro'
+
+const { title } = Astro.props;
+
+
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="description" content="Astro description" />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+		<title>{title}</title>
+		<meta name="description" content="Get keyboard event details">
+		<base target="_blank">
+	</head>
+	<body class="bg-white text-slate-500 dark:bg-black dark:text-slate-300">
+		<Header />
+		<slot />
+	</body>
+</html>
+
