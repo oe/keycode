@@ -26,7 +26,7 @@ export function App() {
           onKeyDownCapture={onInputKeyDown}
           type="text"
           value={value}
-          className="block w-full rounded-md border-0 py-1.5 px-4 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" placeholder="Press any key"
+          className="block w-full rounded-md border-0 py-1.5 px-4 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 dark:bg-gray-900" placeholder="Press any key"
           autoFocus />
         <KeyPressLabel event={keyEvent} />
       </div>
@@ -108,7 +108,7 @@ function KeyPressDetails(props: { event?: React.KeyboardEvent<HTMLInputElement> 
 
 
 function Kbd (props: { children: any }) {
-  return <kbd className="px-2 py-1 text-xs font-semibold text-gray-800 bg-gray-100 border border-gray-200 rounded-lg mr-2">{props.children}</kbd>
+  return <kbd className="px-2 py-1 text-xs font-semibold text-gray-700 bg-gray-100 dark:bg-gray-700 dark:text-gray-200 border border-gray-200 rounded-lg mr-2">{props.children}</kbd>
 }
 
 function EventDetail(props: {event: React.KeyboardEvent<HTMLInputElement>}) {
@@ -120,7 +120,7 @@ function EventDetail(props: {event: React.KeyboardEvent<HTMLInputElement>}) {
     return (
       <div key={key} className='flex items-start mb-1 space-x-2'>
         <span className='text-gray-500'>{key}:</span>
-        <span className='text-gray-800'>{formatValue}</span>
+        <span className='text-gray-800 dark:text-gray-400'>{formatValue}</span>
         <div className='text-gray-500 whitespace-pre-wrap'>// {keyInfoMap[key] || ''}</div>
       </div>
     )
