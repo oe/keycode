@@ -7,7 +7,10 @@ export default defineConfig({
   image: {
     service: squooshImageService(),
   },
-  site: 'https://diff.forth.ink',
+  site: 'https://app.evecalm.com/keycode/',
+  build: {
+    assetsPrefix: '/keycode'
+  },
   integrations:[
     tailwind(),
     react(),
