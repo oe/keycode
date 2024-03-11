@@ -116,7 +116,7 @@ function EventDetail(props: {event: React.KeyboardEvent<HTMLInputElement>}) {
   return Object.keys(detail).map(key => {
     // @ts-ignore
     const value = detail[key]
-    const formatValue = typeof value !== 'string' ? String(value) : JSON.stringify(value)
+    const formatValue = typeof value !== 'string' ? String(value) : `"${value}"`
     return (
       <div key={key} className='flex items-start mb-1 space-x-2'>
         <span className='text-gray-500'>{key}:</span>
