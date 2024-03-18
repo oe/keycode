@@ -19,7 +19,7 @@ export function App() {
     <div className='container mx-auto max-w-xl mt-8'>
       <h1 className=" p-4 my-4 text-center ">
         <span className='text-gradient text-6xl font-bold'>Keycode</span>
-        <small className='block text-xl mt-2 font-serif italic'>get keyboard event detail </small>
+        <small className='block text-xl mt-2 font-serif italic'>get keyboard event details</small>
       </h1>
       <div className="relative mt-2 rounded-md shadow-sm">
         <input
